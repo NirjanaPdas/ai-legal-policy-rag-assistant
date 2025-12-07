@@ -5,3 +5,4 @@ policy_vectorizer.pkl
 __pycache__/
 .streamlit/
 *.pyc
+.vscode/
