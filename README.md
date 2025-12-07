@@ -1,121 +1,88 @@
-AI Legal Policy RAG Assistant (with ML Compliance Classifier)
+⚖️ **AI Legal Policy RAG Assistant + Compliance Risk Classifier**
 
-A smart assistant that analyzes legal/policy documents using RAG + OpenAI and classifies text as Compliant or Risky using a custom ML model trained by me.
+A production-style AI system that combines Retrieval-Augmented Generation (RAG), OpenAI LLMs, and a custom-trained ML compliance classifier to analyze legal & organizational policy documents for accurate answers, compliance insights, and risk detection.
 
-🚀 Features
-🔍 1. RAG-Based Legal Policy Search
+This project simulates how modern enterprises build internal AI assistants for policy governance, risk mitigation, and regulatory compliance.
 
-Upload a PDF policy document
+🌐**1. System Overview**
+This assistant enables organizations to:
 
-Text is extracted using pypdf
+🔍 1.1 Query Any Policy Document Using RAG
 
-Vectorized using FAISS
+-Upload PDF policies
+-Extract text using pypdf
+-Chunk + embed text
+-Store embeddings in FAISS vector database
+-Retrieve the most relevant sections
+-Generate legally aligned answers with OpenAI
 
-Queries are answered using Retrieval-Augmented Generation (RAG)
+🛡️ 1.2 Automatically Detect Risky Statements (Custom ML Model)
+A full ML pipeline that classifies text into:
+-COMPLIANT (safe, aligned with policy)
+-RISKY (potential legal issues, violations, or      harmful commitments)
 
-Ensures accurate, document-grounded responses
+The classifier uses:
+-TF-IDF Vectorizer
+-Logistic Regression
+-Trained manually using curated example statements
+-Exported as policy_model.pkl and policy_vectorizer.pkl
 
-🧠 2. ML Compliance Classifier (Custom Model Trained By Me)
+🤖 1.3 Combined RAG + ML + LLM Workflow
+The assistant blends traditional ML + RAG + LLM:
+User Query 
+   → Retrieve relevant policy sections (FAISS)
+   → ML model evaluates risk in the retrieved text
+   → OpenAI generates a structured, human-readable response
 
-Built a small machine-learning model to classify text as:
+This hybrid design reflects real enterprise AI architectures used in:
+-FinTech
+-Insurance
+-HR compliance
+-Legal-tech
+-Governance and risk management
 
-COMPLIANT
+🧠 **2. ML Compliance Classifier Details**
+ Algorithm Used:
+ -TfidfVectorizer: Converts text → numeric features
+ -LogisticRegression: Interpretable, robust baseline classifier
 
-RISKY
+ Training Script:
+ train_model.py generates:
 
-Pipeline built using:
+ policy_model.pkl          # trained classifier
+ policy_vectorizer.pkl     # TF-IDF vectorizer
 
-scikit-learn
+🎯 **3. Features That Make This Project Enterprise-Ready**
+🔐 4.1 No secrets stored in repository
+All API keys handled using .env.
 
-TfidfVectorizer
+⚡ 4.2 Modular Architecture
+-train_model.py → ML training
+-app.py → Application serving
+-Vector DB and LLM calls separated
 
-LogisticRegression
+🛠️ 4.3 Production Practices Included
+-.gitignore with sensitive files
+-Saved model artifacts for deployment
+-Clear documentation & reproducibility
+-Streamlit UI for business users
 
-Trained using train_model.py
+📈 4.4 Extensible Design
+You can easily upgrade to:
+-Legal entity recognition (NER)
+-Multi-label risk classification
+-Larger datasets
+-Ensembling ML + LLM outputs
 
-Saved as:
+🧪 **4. Example Use Cases**
+🏢 Corporate Policy Governance:
+ HR and Legal teams can validate whether company policies are compliant with regulatory standards.
 
-policy_model.pkl
+🔐 Risk & Compliance Automation:
+ Automated risk detection for internal audits and employee training.
 
-policy_vectorizer.pkl
+🔍 Policy Search Engine:
+ Quickly retrieve any rule, clause, or requirement across long documents.
 
-🔎 The app uses this model during inference to highlight potentially risky statements automatically.
-
-🤖 3. AI-Powered Explanatory Answers
-
-Uses OpenAI API to generate clear legal insights
-
-Responses combine:
-
-Retrieved policy sections
-
-Compliance classification
-
-OpenAI explanation
-
-📄 4. Simple Streamlit Frontend
-
-Clean UI to upload file, ask questions, and view classifier output
-
-Real-time predictions and explanations
-
-🛠️ Tech Stack
-Layer	Technology
-Backend	Python, Scikit-Learn, OpenAI API
-Retrieval	FAISS (vector search), custom embeddings
-ML Model	TF-IDF + Logistic Regression
-Frontend	Streamlit
-Storage	Pickle model artifacts
-PDF Parsing	pypdf
-🧩 Project Structure
-ai-legal-policy-rag-assistant/
-│── app.py                 # Main Streamlit app
-│── train_model.py         # ML model training script
-│── policy_model.pkl       # Saved classifier
-│── policy_vectorizer.pkl  # Saved TFIDF vectorizer
-│── requirements.txt
-│── .gitignore
-│── README.md
-
-⚙️ How It Works
-✔ Step 1 — Train the ML Model
-
-Run once to generate model files:
-
-python train_model.py
-
-
-Outputs:
-
-policy_model.pkl
-
-policy_vectorizer.pkl
-
-✔ Step 2 — Run the App
-streamlit run app.py
-
-🧪 Classifier Example Output
-
-Input:
-
-“The organization may share customer data with external vendors without prior review.”
-
-Output:
-
-Prediction: RISKY  
-Confidence: 0.89  
-Explanation: “This statement allows uncontrolled sharing of sensitive data.”
-
-⭐ Why This Project Is Strong for Interviews
-
-💡 Shows ability to build real-world RAG systems
-💡 Demonstrates ML model training end-to-end
-💡 Integrates OpenAI and classical ML
-💡 Professional project structure (models, vector DB, app, README)
-💡 Solves a real business problem: compliance risk detection
-
-Perfect for AI/ML Engineer, Gen-AI Engineer, SDE (AI focus) roles.
-
-📬 Contact
-
-If you improve or extend the dataset/model, update the .pkl files and re-run the app.
+📑 Legal Document Assistant:
+ Accelerate understanding of service agreements, privacy policies, SOPs, etc.
