@@ -10,7 +10,7 @@ from pathlib import Path
 import os
 
 st.set_page_config(
-    page_title="AI Legal Policy Assistant",
+    page_title="PolicyWise — Smart Policy Guidance",
     page_icon="⚖️",
     layout="wide",
 )
@@ -22,14 +22,15 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
 
 BASE_DIR = Path(__file__).resolve().parent
-MODEL_PATH = BASE_DIR / "policy_model.pkl"
-VECTORIZER_PATH = BASE_DIR / "policy_vectorizer.pkl"
+# renamed artifact files to include the project name PolicyWise
+MODEL_PATH = BASE_DIR / "policywise_model.pkl"
+VECTORIZER_PATH = BASE_DIR / "policywise_vectorizer.pkl"
 
 # in-memory objects so we load them only once
 _model = None
 _vectorizer = None
 
-# ML PART (COMPLIANT / RISKY) 
+# ML PART (COMPLIANT / RISKY)
 
 def load_policy_model():
     """Load trained logistic regression model + TF-IDF vectorizer."""
@@ -161,7 +162,7 @@ def search_chunks(query: str, k: int = 5):
     return results
 
 
-# LLM REVIEW (USES RAG CONTEXT) 
+# LLM REVIEW (USES RAG CONTEXT)
 
 def llm_available() -> bool:
     return client is not None
@@ -178,7 +179,7 @@ def llm_review_clause(clause: str, context_chunks):
 You are a legal/compliance assistant for a company.
 
 Clause:
-\"\"\"{clause}\"\"\"
+\"\"\"{clause}\"\"\" 
 
 Relevant policy snippets:
 {context}
@@ -211,12 +212,12 @@ Use clear simple English.
         )
 
 
-# UI 
+# UI
 init_session()
 
 st.markdown(
     """
-    <h2 style="margin-bottom:0.2rem;">AI Legal Policy Assistant</h2>
+    <h2 style="margin-bottom:0.2rem;">PolicyWise</h2>
     <p style="font-size:0.9rem; color:#bbbbbb;">
     Paste a policy clause, upload your policy PDFs, and get:
     <br>• a simple ML risk score (COMPLIANT / RISKY)
@@ -227,9 +228,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Sidebar: PDF upload and indexing 
+# Sidebar: PDF upload and indexing
 with st.sidebar:
-    st.header("📚 Policy Documents")
+    st.header("📚 PolicyWise Documents")
     files = st.file_uploader(
         "Upload policy PDFs (data protection, HR, security, etc.)",
         type=["pdf"],
@@ -271,7 +272,7 @@ with st.sidebar:
 # Main layout
 col_left, col_right = st.columns([1.4, 1.0])
 
-# Left: clause + LLM review 
+# Left: clause + LLM review
 with col_left:
     st.subheader("📜 Clause")
     clause_text = st.text_area(
@@ -300,7 +301,7 @@ with col_left:
     else:
         st.info("Paste a clause and click **Analyze clause** to see the review here.")
 
-# Right: ML risk + context snippets 
+# Right: ML risk + context snippets
 with col_right:
     st.subheader("🔎 ML risk classifier")
 
@@ -309,7 +310,7 @@ with col_right:
         if label == "model_not_available":
             st.error(
                 "Trained model not found. Run `python train_model.py` once "
-                "to create policy_model.pkl and policy_vectorizer.pkl."
+                "to create policywise_model.pkl and policywise_vectorizer.pkl."
             )
         else:
             emoji = "🟢" if label == "compliant" else "🔴"
@@ -337,7 +338,7 @@ with col_right:
 
 st.markdown(
     "<p style='font-size:0.75rem; color:#888888; margin-top:1rem;'>"
-    "Project: AI-Legal-Policy-RAG – combines a small trained ML model with RAG and optional LLM review."
+    "Project: PolicyWise – combines a small trained ML model with RAG and optional LLM review."
     "</p>",
     unsafe_allow_html=True,
 )

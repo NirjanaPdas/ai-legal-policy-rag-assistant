@@ -10,7 +10,7 @@ from sklearn.metrics import classification_report
 def main():
 
     # 1. Tiny example dataset (you can expand later)
-    
+
     data = {
         "text": [
             # compliant / safe
@@ -50,9 +50,9 @@ def main():
     }
 
     df = pd.DataFrame(data)
- 
+
     # 2. Train / test split
-    
+
     X_train, X_test, y_train, y_test = train_test_split(
         df["text"],
         df["label"],
@@ -62,7 +62,7 @@ def main():
     )
 
     # 3. TF-IDF vectorizer
-    
+
     vectorizer = TfidfVectorizer(
         max_features=2000,
         ngram_range=(1, 2),
@@ -72,26 +72,26 @@ def main():
     X_test_vec = vectorizer.transform(X_test)
 
     # 4. Train classifier
-     
+
     model = LogisticRegression(max_iter=200)
     model.fit(X_train_vec, y_train)
 
     # 5. Evaluate
-     
+
     preds = model.predict(X_test_vec)
     print("=== Classification report ===")
     print(classification_report(y_test, preds))
 
     # 6. Save model + vectorizer
-     
-    with open("policy_model.pkl", "wb") as f:
+    # filenames updated to PolicyWise naming
+    with open("policywise_model.pkl", "wb") as f:
         pickle.dump(model, f)
 
-    with open("policy_vectorizer.pkl", "wb") as f:
+    with open("policywise_vectorizer.pkl", "wb") as f:
         pickle.dump(vectorizer, f)
 
     print("✅ Training complete.")
-    print("Saved: policy_model.pkl, policy_vectorizer.pkl")
+    print("Saved: policywise_model.pkl, policywise_vectorizer.pkl")
 
 
 if __name__ == "__main__":

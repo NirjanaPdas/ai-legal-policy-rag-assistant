@@ -1,8 +1,11 @@
 policy_model.pkl
 policy_vectorizer.pkl
 .venv/
+venv/
 .env
 __pycache__/
-.streamlit/
 *.pyc
+*.pyo
+*.pyd
 .vscode/
+streamlit/cache/
