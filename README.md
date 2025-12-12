@@ -77,6 +77,12 @@ policy-wise/
 ```
 ---
 
+## 🧱 Architecture 
+```bash
+🧑‍💻 User (Streamlit UI) → 📄 PDF Processing (Extract + Chunk + Embed) → 🔍 FAISS Search (RAG) → 🛡️ ML Classifier (TF-IDF + LR) → 🤖 LLM Review (Explain + Rewrite) → 📤 Final Output
+```
+
+
 ## 🛠️ Installation
 
 ### 1️⃣ Create a virtual environment
