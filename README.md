@@ -109,6 +109,39 @@ python train_model.py
 ```bash
 streamlit run app.py
 ```
+---
+
+### 🚀 HOW IT WORKS 
+---------------
+
+1. 📄 Upload Policy PDFs
+   - Extract text using PyPDF
+   - Split into overlapping chunks
+   - Create embeddings (OpenAI)
+   - Store vectors in FAISS index
+
+2. ✍️ Enter a Clause
+   - Convert clause → embedding
+   - Search FAISS for top-matching policy snippets (RAG)
+
+3. 🛡️ ML Risk Classification
+   - TF-IDF vectorizer transforms text
+   - Logistic Regression predicts:
+       → ✅ COMPLIANT
+       → ❌ RISKY
+   - Outputs label + confidence score
+
+4. 🤖 LLM Review
+   - Combine: user clause + retrieved policy snippets + ML output
+   - AI generates:
+       - Explanation of risk
+       - Highlighted vague phrases
+       - A safer rewritten version
+
+5. 📤 Final Output
+   - ML prediction
+   - Relevant policy snippets (RAG)
+   - LLM explanation + rewrite
 
  
 
