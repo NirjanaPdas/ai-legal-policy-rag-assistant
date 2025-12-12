@@ -10,6 +10,19 @@ An intelligent assistant that analyzes policy and legal clauses using RAG, a cus
 
 ---
 
+## ✨ What is PolicyWise?
+
+PolicyWise is an AI-powered tool that helps Compliance and Legal teams quickly evaluate policy or legal clauses.
+
+It combines:
+
+- **RAG (Retrieval-Augmented Generation)** → Finds relevant text inside uploaded PDF policies  
+- **Machine Learning Classifier** → Predicts if a clause is COMPLIANT or RISKY  
+- **LLM Explanation (OpenAI)** → Gives clear explanations and safer rewrites  
+
+This makes PolicyWise a smart internal assistant for reviewing documents.
+
+---
 
 # AI Legal Policy Assistant (RAG + Risk Classifier)
 
