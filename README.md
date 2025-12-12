@@ -56,6 +56,7 @@ If an OpenAI key is provided, PolicyWise can:
 
 ## 📁 Project Structure
 
+```bash
 policy-wise/
 │
 ├── app.py                 # Main Streamlit application
@@ -73,4 +74,3 @@ policy-wise/
 │   └── config.toml        # Technical blue theme for UI
 │
 └── .gitignore             # Ignored files (venv, .env, cache, etc.)
-
