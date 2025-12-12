@@ -73,6 +73,7 @@ policy-wise/
 ├── .streamlit/
 │   └── config.toml        # Technical blue theme for UI
 │
+├── LICENSE
 └── .gitignore             # Ignored files (venv, .env, cache, etc.)
 ```
 ---
